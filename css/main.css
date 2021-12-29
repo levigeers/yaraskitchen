@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;300&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+* {
+    /* font-family: 'Playfair Display', serif; */
+    font-family: 'Josefin Sans', sans-serif;
+
+    --pageBackgroundColor: #fffdf4;
+    --textColor: #D8B6A4;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+    color: var(--textColor);
+    background-color: var(--pageBackgroundColor);
+}

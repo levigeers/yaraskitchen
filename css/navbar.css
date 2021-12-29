@@ -1,0 +1,30 @@
+* {
+    --backgroundColor: black;
+    --navbarTextColor: var(--pageBackgroundColor);
+}
+
+nav {
+    background-color: var(--backgroundColor);
+    height: 75px;
+    padding: 0 10rem;
+
+    display: flex;
+    flex-direction: row;
+}
+
+nav a {
+    align-self: center;
+
+    text-decoration: none;
+    list-style-type: none;
+
+    font-size: 2rem;
+
+    color: var(--navbarTextColor);
+
+    margin: 1rem;
+}
+
+nav a:first-child {
+    margin-right: auto;
+}

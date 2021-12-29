@@ -1,0 +1,48 @@
+* {
+    --loginContainerBackgroundColor: #C9AB91;
+    --loginFormBackgroundColor: #ede1cc;
+}
+
+.loginContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 50vw;
+    height: 80vh;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: var(--loginContainerBackgroundColor);
+}
+
+.loginForm {
+    height: 70%;
+    width: 70%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    background-color: var(--loginFormBackgroundColor);
+}
+
+.loginForm div {
+    margin: 1rem 0;
+
+    height: 2rem;
+
+    text-align: center;
+}
+
+.loginForm div label {
+    font-size: 1.5rem;
+}
+
+.loginForm div input {
+    font-size: 1.5rem;
+}
