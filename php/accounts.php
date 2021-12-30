@@ -8,20 +8,28 @@
         echo 'connected!';
     }
 
-    $query = "SELECT * FROM `users`";
-    $result = $connection->query($query);
+    if (isset('action')) {
+        $action = $_GET['action'];
 
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            echo $row['username'];
+        if ($action === 'userLogin'){
+            echo 'login';
+        }
+        else if ($action === 'userRegister') {
+            echo 'register';
         }
     }
+    else {
+        echo 'no action!';
+    }
 
-    $connection->close();
+    // $query = "SELECT * FROM `users`";
+    // $result = $connection->query($query);
 
-    // if (isset('action')) {
-    //     if ($_GET['action'] == "loginUser"){
-
+    // if ($result->num_rows > 0) {
+    //     while ($row = $result->fetch_assoc()) {
+    //         // echo $row['username'];
     //     }
     // }
+
+    $connection->close();
 ?>
