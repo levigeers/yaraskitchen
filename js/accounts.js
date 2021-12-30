@@ -7,10 +7,10 @@ registerButton.onclick = onRegisterButton;
 function onLoginButton() {
     $.ajax({
         url: "http://www.baking.local/php/accounts.php",
-        method: "POST",
+        method: "get",
         data: {action: 'loginUser', username: 'Levi'},
-        success: function(data) {
-            console.log(data);
+        success: function(result) {
+            console.log(result);
         }
     })
 }
@@ -18,10 +18,10 @@ function onLoginButton() {
 function onRegisterButton() {
     $.ajax({
         url: "http://www.baking.local/php/accounts.php",
-        method: "POST",
+        method: "get",
         data: {action: 'registerUser', username: 'Levi'},
         success: function(data) {
-            console.log(data);
+            
         }
     })
 }
