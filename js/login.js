@@ -80,10 +80,21 @@ document.addEventListener("DOMContentLoaded", () => {
             data: {action: "register", username: $username, email: $email, password: $password},
             success : function(result){
                 console.log(result);
+
+                if (result === "succesful"){
+                    setFormMessage(createAccountForm, "succes", "Account created succesfully!")
+                } 
+                else if (result === "error"){
+                    setFormMessage(createAccountForm, "error", "Something went wrong creating your account!");
+                }
+                else if (result === "error - duplicateuser") {
+                    setFormMessage(createAccountForm, "error", "An account with this email or username already exists!");
+                }
+            },
+            error : function(jqXHR, exception) {
+                setFormMessage(createAccountForm, "error", "Something went wrong creating your account!");
             }
         });
-
-        setFormMessage(createAccountForm, "error", "Invalid username/password combination");
     });
 
     document.querySelectorAll(".form__input").forEach(inputElement => {
