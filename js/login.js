@@ -1,5 +1,11 @@
-const usernameInput = document.getElementById("usernameInput");
-const passwordInput = document.getElementById("passwordInput");
+const loginUsernameInput = document.getElementById("loginUsernameInput");
+const loginPasswordInput = document.getElementById("loginPasswordInput");
+
+const registerUsernameInput = document.getElementById("registerUsernameInput");
+const registerEmailInput = document.getElementById("registerEmailInput");
+const registerPasswordInput = document.getElementById("registerPasswordInput");
+const registerConfirmPasswordInput = document.getElementById("registerConfirmPasswordInput");
+
 
 const minUsernameLenght = 6;
 const maxUsernameLenght = 20;
@@ -41,20 +47,43 @@ document.addEventListener("DOMContentLoaded", () => {
     loginForm.addEventListener("submit", e => {
         e.preventDefault();
 
-        console.log("logging in!");
-        console.log("username : " + usernameInput.value);
-        console.log("password : " + passwordInput.value);
+        $username = loginUsernameInput.value;
+        $password = loginPasswordInput.value;
 
         $.ajax({
             method: "post",
             url: "../../php/login.php",
-            data: {action: "login", username: usernameInput.value, password: passwordInput.value},
+            data: {action: "login", username: $username, password: $password},
             success : function(result){
                 console.log(result);
             }
         });
 
         setFormMessage(loginForm, "error", "Invalid username/password combination");
+    });
+
+    createAccountForm.addEventListener("submit", e => {
+        e.preventDefault();
+
+        $username = registerUsernameInput.value;
+        $email = registerEmailInput.value;
+        $password = registerPasswordInput.value;
+        $confirmedPassword = registerConfirmPasswordInput.value;
+
+        if ($password !== $confirmedPassword) {
+            // the password is not the same as the confirm password
+        }
+
+        $.ajax({
+            method: "post",
+            url: "../../php/login.php",
+            data: {action: "register", username: $username, email: $email, password: $password},
+            success : function(result){
+                console.log(result);
+            }
+        });
+
+        setFormMessage(createAccountForm, "error", "Invalid username/password combination");
     });
 
     document.querySelectorAll(".form__input").forEach(inputElement => {
