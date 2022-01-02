@@ -3,7 +3,22 @@ require_once("./config.php");
 
 if (isset($_POST['action'])){
     if ($_POST['action'] == 'login'){
-        echo 'login';
+        $username = strtolower($_POST['username']);
+        $password = strtolower($_POST['password']);
+
+        $password = md5($password);
+
+        $checkUser = isUserRegistered($connection, $username, $password);
+
+        if ($checkUser === "true"){
+            echo "succesful";
+        } 
+        else if ($checkUser === "false") {
+            echo "error - no user found";
+        }
+        else if ($checkUser === "failed") {
+            echo "error - check user failed";
+        }
     }
     else if ($_POST['action'] == "register"){
         $username = strtolower($_POST['username']);
@@ -35,6 +50,35 @@ if (isset($_POST['action'])){
     }
 
     $connection->close();
+}
+
+function isUserRegistered($connection, $username, $password) {
+    $username = strtolower($username);
+
+    $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
+    $result = $connection->query($sql);
+
+    if ($connection->error !== "") {
+        trigger_error('Invalid query: ' . $connection->error);
+
+        return "failed";
+    }
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $rowUsername = strtolower($row['username']);
+            $rowEmail = strtolower($row['email']);
+            $rowPassword = $row['password'];
+
+            if (($username === $rowUsername || $username === $rowEmail) && $password === $rowPassword) {
+                return "true";
+            }
+        }
+
+        return "false";
+    }
+
+    return "false";
 }
 
 function isUserAlreadyRegistered($connection, $username, $email) {

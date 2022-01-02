@@ -1,3 +1,6 @@
+let loginForm = undefined;
+let createAccountForm = undefined;
+
 const loginUsernameInput = document.getElementById("loginUsernameInput");
 const loginPasswordInput = document.getElementById("loginPasswordInput");
 
@@ -5,7 +8,6 @@ const registerUsernameInput = document.getElementById("registerUsernameInput");
 const registerEmailInput = document.getElementById("registerEmailInput");
 const registerPasswordInput = document.getElementById("registerPasswordInput");
 const registerConfirmPasswordInput = document.getElementById("registerConfirmPasswordInput");
-
 
 const minUsernameLenght = 6;
 const maxUsernameLenght = 20;
@@ -28,20 +30,34 @@ function clearInputError(inputElement) {
     inputElement.parentElement.querySelector(".form__input-error-message").textContent = "";
 }
 
+function showLoginPage(e) {
+    if (e !== undefined) {
+        e.preventDefault();
+    }
+    
+    loginForm.classList.remove("form--hidden");
+    createAccountForm.classList.add("form--hidden");
+}
+
+function showRegisterPage(e) {
+    if (e !== undefined) {
+        e.preventDefault();
+    }
+
+    loginForm.classList.add("form--hidden");
+    createAccountForm.classList.remove("form--hidden");
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-    const loginForm = document.querySelector("#login");
-    const createAccountForm = document.querySelector("#createAccount");
+    loginForm = document.querySelector("#login");
+    createAccountForm = document.querySelector("#createAccount");
 
     document.querySelector("#linkCreateAccount").addEventListener("click", e => {
-        e.preventDefault();
-        loginForm.classList.add("form--hidden");
-        createAccountForm.classList.remove("form--hidden");
+        showRegisterPage(e);
     });
 
     document.querySelector("#linkLogin").addEventListener("click", e => {
-        e.preventDefault();
-        loginForm.classList.remove("form--hidden");
-        createAccountForm.classList.add("form--hidden");
+        showLoginPage(e);
     });
 
     loginForm.addEventListener("submit", e => {
@@ -56,10 +72,25 @@ document.addEventListener("DOMContentLoaded", () => {
             data: {action: "login", username: $username, password: $password},
             success : function(result){
                 console.log(result);
+
+                if (result === "succesful"){
+                    setFormMessage(loginForm, "succes", "Logged in succesfully!");
+
+                    setTimeout(function(){
+                        window.location.href = "http://www.baking.local/index.html";
+                    }, 1000);
+                } 
+                else if (result === "error - no user found"){
+                    setFormMessage(loginForm, "error", "No user found with the given credentials!");
+                }
+                else if (result === "error - check user failed") {
+                    setFormMessage(loginForm, "error", "Something went wrong! Please try again.");
+                }
+            },
+            error : function(jqXHR, exception) {
+                setFormMessage(createAccountForm, "error", "Something went wrong creating your account!");
             }
         });
-
-        setFormMessage(loginForm, "error", "Invalid username/password combination");
     });
 
     createAccountForm.addEventListener("submit", e => {
@@ -83,6 +114,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (result === "succesful"){
                     setFormMessage(createAccountForm, "succes", "Account created succesfully!")
+
+                    setTimeout(function(){
+                        showLoginPage();
+                    }, 1000);
                 } 
                 else if (result === "error"){
                     setFormMessage(createAccountForm, "error", "Something went wrong creating your account!");
