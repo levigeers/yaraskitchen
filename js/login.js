@@ -1,3 +1,9 @@
+const usernameInput = document.getElementById("usernameInput");
+const passwordInput = document.getElementById("passwordInput");
+
+const minUsernameLenght = 6;
+const maxUsernameLenght = 20;
+
 function setFormMessage(formElement, type, message) {
     const messageElement = formElement.querySelector(".form__message");
 
@@ -36,15 +42,25 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
 
         console.log("logging in!");
-        // Perform your AJAX/Fetch login
+        console.log("username : " + usernameInput.value);
+        console.log("password : " + passwordInput.value);
+
+        $.ajax({
+            method: "post",
+            url: "../../php/login.php",
+            data: {action: "login", username: usernameInput.value, password: passwordInput.value},
+            success : function(result){
+                console.log(result);
+            }
+        });
 
         setFormMessage(loginForm, "error", "Invalid username/password combination");
     });
 
     document.querySelectorAll(".form__input").forEach(inputElement => {
         inputElement.addEventListener("blur", e => {
-            if (e.target.id === "signupUsername" && e.target.value.length > 0 && e.target.value.length < 10) {
-                setInputError(inputElement, "Username must be at least 10 characters in length");
+            if (e.target.id === "signupUsername" && (e.target.value.length < minUsernameLenght || e.target.value.length >= maxUsernameLenght)) {
+                setInputError(inputElement, `Username must be between ${minUsernameLenght} and ${maxUsernameLenght} long`);
             }
         });
 
