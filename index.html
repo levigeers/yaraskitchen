@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/pages/home-page.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <title>Yara's Bakery</title>
 </head>
 <body>
@@ -17,8 +19,9 @@
             <a href="">Home</a></li>
             <a href="">Recipes</a></li>
             <a href="">Contact</a></li>
-            <a href="">Content</a></li>
-            <a href="html/pages/login.html">Login</a></li>
+            <a id="contentButton" class="page--hidden" href="">Content</a></li>
+            <a id="loginButton" href="html/pages/login.html">Login</a></li>
+            <a id="profileButton" class="page--hidden" href="html/pages/profile.html">Profile</a></li>
         </nav>
 
         <div class="banner">
@@ -59,5 +62,6 @@
             </div>
         </div>
     </main>
+    <script src="./js/index.js"></script>
 </body>
 </html>

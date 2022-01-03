@@ -35,8 +35,8 @@ function showLoginPage(e) {
         e.preventDefault();
     }
     
-    loginForm.classList.remove("form--hidden");
-    createAccountForm.classList.add("form--hidden");
+    loginForm.classList.remove("page--hidden");
+    createAccountForm.classList.add("page--hidden");
 }
 
 function showRegisterPage(e) {
@@ -44,8 +44,8 @@ function showRegisterPage(e) {
         e.preventDefault();
     }
 
-    loginForm.classList.add("form--hidden");
-    createAccountForm.classList.remove("form--hidden");
+    loginForm.classList.add("page--hidden");
+    createAccountForm.classList.remove("page--hidden");
 }
 
 document.addEventListener("DOMContentLoaded", () => {

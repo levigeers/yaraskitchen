@@ -16,8 +16,6 @@ if (isset($_POST['action'])){
 
             $_SESSION['username'] = $checkUser['username'];
             $_SESSION['role'] = $checkUser['role'];
-
-            echo $_SESSION['role'];
         } 
         else if ($checkUser['result'] === 'false') {
             echo "error - no user found";

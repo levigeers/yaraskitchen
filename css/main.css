@@ -15,3 +15,7 @@ body {
     color: var(--textColor);
     background-color: var(--pageBackgroundColor);
 }
+
+.page--hidden {
+    display: none;
+}
