@@ -10,13 +10,19 @@ if (isset($_POST['action'])){
 
         $checkUser = isUserRegistered($connection, $username, $password);
 
-        if ($checkUser === "true"){
+        if ($checkUser['result'] === 'true'){
             echo "succesful";
+            session_start();
+
+            $_SESSION['username'] = $checkUser['username'];
+            $_SESSION['role'] = $checkUser['role'];
+
+            echo $_SESSION['role'];
         } 
-        else if ($checkUser === "false") {
+        else if ($checkUser['result'] === 'false') {
             echo "error - no user found";
         }
-        else if ($checkUser === "failed") {
+        else if ($checkUser['result'] === 'failed') {
             echo "error - check user failed";
         }
     }
@@ -61,7 +67,7 @@ function isUserRegistered($connection, $username, $password) {
     if ($connection->error !== "") {
         trigger_error('Invalid query: ' . $connection->error);
 
-        return "failed";
+        return ['result' => 'failed'];
     }
 
     if ($result->num_rows > 0) {
@@ -71,14 +77,14 @@ function isUserRegistered($connection, $username, $password) {
             $rowPassword = $row['password'];
 
             if (($username === $rowUsername || $username === $rowEmail) && $password === $rowPassword) {
-                return "true";
+                return ['result' => 'true', 'username' => $rowUsername, 'role' => $row['role']];
             }
         }
 
-        return "false";
+        return ['result' => 'false'];
     }
 
-    return "false";
+    return ['result' => 'false'];
 }
 
 function isUserAlreadyRegistered($connection, $username, $email) {

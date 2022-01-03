@@ -106,11 +106,11 @@ body {
     border-radius: var(--border-radius);
     outline: none;
     cursor: pointer;
-    background: var(--color-primary);
+    background: #966561;
 }
 
 .form__button:hover {
-    background: var(--color-primary-dark);
+    background: #77514d;
 }
 
 .form__button:active {
