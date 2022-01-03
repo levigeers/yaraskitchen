@@ -1,10 +1,15 @@
 .contentcontainer {
     margin: 5% 20%;
     display: flex;
-    justify-content: flex-end;
-    flex-direction: row-reverse;
+    flex-direction: row;
 }
 
 .applepie-img {
-    width: 30vw;
+    width: 30vw; 
+    height: auto;
+    padding: 0 5%;
+}
+
+.titlecontainer {
+    margin: auto;
 }
