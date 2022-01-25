@@ -1,0 +1,40 @@
+
+a section {
+    display: flex;
+    align-items: center;
+    width: 60%;
+    height: auto;
+    margin: 5vw 20vw;
+    border: 10px solid var(--headingColor);
+    box-shadow: 10px 15px #615149;
+    
+    transition: 0.3s;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+h1 {
+    font-size: 300%;
+    color: var(--textColor);
+}
+
+a:nth-of-type(even) section {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+a section:hover {
+    box-shadow: 25px 30px rgb(0, 0, 0);
+}
+
+article {
+    margin: 5% 5%; 
+    text-align: center; 
+}
+
+.applepie-img {
+    width: 30vw;
+}

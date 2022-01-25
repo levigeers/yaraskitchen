@@ -5,7 +5,12 @@
     font-family: 'Josefin Sans', sans-serif;
 
     --pageBackgroundColor: #fffdf4;
-    --textColor: #D8B6A4;
+    --textColor: black;
+    --headingColor: #D8B6A4;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--headingColor);
 }
 
 body {
@@ -14,4 +19,13 @@ body {
 
     color: var(--textColor);
     background-color: var(--pageBackgroundColor);
+}
+
+footer {
+    background-color: black;
+    color: white;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

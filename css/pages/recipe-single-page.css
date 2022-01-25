@@ -1,0 +1,33 @@
+h1 {
+    text-align: center;
+    padding: 5% 0;
+    font-size: 250%;
+}
+
+p {
+    margin: 30px 20%;
+}
+
+.banner-applepie {
+    background-image: url(../../media/content/apple-pie.jpg);
+    width: 100%;
+    height: 500px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+article:first-of-type{
+    border-right: solid #D8B6A4;
+    padding: 30px 15px;
+}
+
+article:last-of-type {
+    width: 40vw;
+    margin: 30px 15px;
+}
+
+.recipecontainer {
+    display: flex;
+    justify-content: center;
+}
