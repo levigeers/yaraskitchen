@@ -1,6 +1,12 @@
 <?php 
 require_once("./config.php");
 
+if ($connection->error !== "") {
+    trigger_error('Invalid query: ' . $connection->error);
+
+    return ['result' => 'failed'];
+}
+
 if (isset($_POST['action'])){
     if ($_POST['action'] == 'login'){
         $username = strtolower($_POST['username']);
